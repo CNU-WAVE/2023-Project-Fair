@@ -60,6 +60,7 @@ def print_ap_list(access_points):
     # Print the table
     print(tabulate(table_data, headers=headers, tablefmt='grid'))
 
-access_points = scan_access_points()
-print_ap_list(access_points)
+if __name__ == "__main__":
+    access_points = scan_access_points()
+    print_ap_list(access_points)
 

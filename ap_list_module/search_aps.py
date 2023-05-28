@@ -22,8 +22,13 @@ def scan_access_points(interface='wlan0'):
         quality_match = re.search(r'Quality=(\d+)/\d+', cell)
         signal_level_match = re.search(r'Signal level=(-?\d+)/\d+', cell)
         ie_match = re.findall(r'IE:\s(.*?)\n', cell)
+        gcipher_match = re.search(r"Group Cipher\s*:\s*([^\n]+)", cell)
+        pcipher_match = re.search(r"Pairwise Ciphers \(\d+\)\s*:\s*([^\n]+)", cell)
+        auth_match = re.search(r"Authentication Suites \(\d+\)\s*:\s*([^\n]+)", cell)
 
-        if address_match and ssid_match and frequency_match and encryption_match and quality_match and signal_level_match and protocol_match and len(ie_match) > 0:
+
+
+        if address_match and ssid_match and frequency_match and encryption_match and quality_match and signal_level_match and protocol_match and len(ie_match) > 0 and gcipher_match and pcipher_match and auth_match:
             address = address_match.group(1)
             ssid = ssid_match.group(1)
             frequency = frequency_match.group(1)
@@ -32,6 +37,13 @@ def scan_access_points(interface='wlan0'):
             signal_level = signal_level_match.group(1)
             channel = channel_match.group(1)
             protocol = protocol_match.group(1)
+            ie = ie_match[0]
+            if "Unknown" in ie_match[0]:
+                ie="Unknown"
+            gcipher=gcipher_match.group(1)
+            pcipher=pcipher_match.group(1)
+            auth=auth_match.group(1)
+
             ap = {
                 'Address': address,
                 'SSID': ssid,
@@ -41,9 +53,12 @@ def scan_access_points(interface='wlan0'):
                 'Signal Level': signal_level,
                 'Channel': channel,
                 'Protocol': protocol,
-                'IE': ie_match[0]
+                'IE': ie,
+                'Group Cipher':gcipher,
+                'Pairwise Cipher': pcipher,
+                "Authentication": auth
             }
-            if not (ap['SSID'] is None):
+            if ap['SSID'] != "":
                 aps.append(ap)
 
     return aps
@@ -51,12 +66,11 @@ def scan_access_points(interface='wlan0'):
 
 # Print the ap list as a table
 def print_ap_list(access_points):
-    print("------------AP List-------------")
 
     # Header of table
-    headers = ['#','SSID', 'Address', 'Channel', 'IE']
+    headers = ['#','SSID', 'Address', 'Channel', 'IE', 'Authentication']
     # iterating ap list and print each information
-    table_data = [[i, ap['SSID'], ap['Address'], ap['Channel'], ap['IE']] for i,ap in enumerate(access_points)]
+    table_data = [[i, ap['SSID'], ap['Address'], ap['Channel'], ap['IE'], ap['Authentication']] for i,ap in enumerate(access_points)]
     # Print the table
     print(tabulate(table_data, headers=headers, tablefmt='grid'))
 

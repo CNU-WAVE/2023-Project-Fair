@@ -5,13 +5,16 @@ from getpass import getpass
 
 
 if __name__ == "__main__":
-    for _ in range(5):
+    for _ in range(3):
         print()
     print("\t _       _____ _    ________")
     print("\t| |     / /   | |  / / ____/")
     print("\t| | /| / / /| | | / / __/   ")
     print("\t| |/ |/ / ___ | |/ / /___   ")
     print("\t|__/|__/_/  |_|___/_____/   ")
+
+    for _ in range(3):
+        print()
 
 
     apList = scan_access_points()

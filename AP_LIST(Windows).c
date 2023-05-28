@@ -40,7 +40,7 @@ int main() {
     }
     error = WlanGetAvailableNetworkList(handle, &(interfaceList->InterfaceInfo[0].InterfaceGuid), 0, NULL, &networkList);
     if (error != ERROR_SUCCESS) {
-        printf("??");
+        printf("스캔 결과 출력 에러");
         WlanFreeMemory(interfaceList);
         WlanCloseHandle(handle, NULL);
         return 1;

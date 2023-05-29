@@ -53,7 +53,7 @@ kernel header: Linux kali 6.1.0-kali9-amd64
 ### 구현 결과물(1차)
 ![스크린샷](https://github.com/CNU-WAVE/2023-Project-Fair/assets/81208791/ccb8c602-1d88-488d-83f3-c0efd22864c4)
 - search AP list 기능
-- save as .conf file 기능
+- save AP as .conf file 기능
 - checking external network 기능
 
 ## 기대 효과

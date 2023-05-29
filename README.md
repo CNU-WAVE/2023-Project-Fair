@@ -1,4 +1,4 @@
-<h1 align="center">폐쇄망 환경에서 WPA2 사용 무선 AP에 대한 보안 취약점 진단 도구</h1>
+<h1 align="center">폐쇄망 환경에서 WPA2(Wi-Fi Protected Access II) 사용 무선 AP(Access Point)에 대한 보안 취약점 진단 도구</h1>
 
 <div align="center">
 

@@ -1,4 +1,4 @@
-<h1 align="center">무선 네트워크 AP(Access Point) 대상 보안 진단 도구</h1>
+<h1 align="center">폐쇄망 환경에서 WPA2 사용 무선 AP에 대한 보안 취약점 진단 도구</h1>
 
 <div align="center">
 

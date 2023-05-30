@@ -3,7 +3,7 @@
 <div align="center">
 
   <img src="https://github.com/CNU-WAVE/.github/blob/main/profile/image/WAVE(NoBackground).png?raw=true" width="200" align="center"> 
-  <h2>WAVE: Wireless AP Vulnerability Examinatior</h2>
+  <h2>WAVE: Wireless Air-gap Vulnerability Examinatior</h2>
  
 </div>
  

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     print("\t| |/ |/ / ___ | |/ / /___   ")
     print("\t|__/|__/_/  |_|___/_____/   \n")
 
-    print("   Wireless AP Vulnerability Examinator\n")
+    print("  Wireless Air-gap Vulnerability Examinator\n")
     
     print("#############      CHECK MENU      #############")
     print("  [1] KRACK vulnerability")

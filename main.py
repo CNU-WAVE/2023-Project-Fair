@@ -14,10 +14,11 @@ if __name__ == "__main__":
     print("\t|__/|__/_/  |_|___/_____/   \n")
 
     print("  Wireless Air-gap Vulnerability Examinator\n")
-    
+
     print("#############      CHECK MENU      #############")
-    print("  [1] KRACK vulnerability")
+    print("  [1] Connect with WiFi")
     print("  [2] Connection of External Network")
+    print("  [3] Monitoring Packet")
     print("################################################\n")
 
     menu = int(input("Select Menu(Number): "))
@@ -32,31 +33,32 @@ if __name__ == "__main__":
         selected_AP = apList[selected_num]
         print()
         print("############# Selected AP #############")
-        print("SSID:",selected_AP["SSID"])
+        print("SSID:", selected_AP["SSID"])
         print("Address:", selected_AP["Address"])
         print("IE:", selected_AP["IE"])
         print("#######################################\n")
-    
+
         passwd = getpass("Input AP's password: ")
         set_conf(selected_AP, passwd)
         print()
         print("Save succeeded in network.conf\n")
 
-
-
         #########################################
         # TODO:                                 #
-        # KRACK CHECKING CODE                   #
+        # CONNECT WITH AP with network.conf     #
         #########################################
-
-        print("KRACK CHECKING CODE will be here!")
-        print("Attack for", selected_AP["SSID"])
-        print()
-        print()
+        connect_wifi("./network.conf")
 
     elif menu == 2:
         connected_ap = get_connected_ap()
         print_connected_AP(connected_ap)
         # option needed
         check_DNS_query()
-
+        
+        
+    elif menu == 3:
+        #########################################
+        # TODO:                                 #
+        # Print Packets from AP                 #
+        #########################################
+        

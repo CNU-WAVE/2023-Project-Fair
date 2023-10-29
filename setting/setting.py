@@ -33,7 +33,28 @@ def set_conf(ap, passwd):
     file.write('}')
 
     file.close()
+    
+def read_config_file(config_file):
+    config = configparser.ConfigParser()
+    try:
+        config.read(file_path)
+        ssid = config.get('Wireless', 'SSID')
+        password = config.get('Wireless', 'Password')
+        return ssid, password
+    exception Exception as e:
+        print(f"Error reading settings file: {e}")
+        return None, None
 
+def connect_wifi(config_file):
+    ssid, password = read_config_file(config_file)
+    if ssid and password:
+        command = f"nmcli device wifi connect '{ssid} password '{password}'"
+
+        try:
+            subprocess.run(command, shell=Ture, check=True)
+            print(f"Connected to '{ssid}' successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to '{ssid}'.")
 def print_connected_AP(connected_ap):
     if connected_ap:
         print("\nSSID:", connected_ap['SSID'])

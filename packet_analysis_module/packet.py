@@ -80,7 +80,9 @@ def capture_start(packet):
         if src_ip == dst_ip:
             table = "\033[41m" + table + "\033[0m"  # Highlighting table in red if srcIP equals dstIP
         print(table)
-# 초기화 함수 호출
-capture_init()
-print("Capture end")
+
+if __name__ == "__main__":
+    # 초기화 함수 호출
+    capture_init()
+    print("Capture end")
 

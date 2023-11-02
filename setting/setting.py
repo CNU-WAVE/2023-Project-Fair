@@ -23,17 +23,14 @@ def get_connected_ap():
         return None
     
 
-def set_conf(ap, passwd):
+def set_conf(ssid, passwd):
 
-    file = open('network.conf', 'w')
-    file.write("ctrl_interface=/var/run/wpa_supplicant\n")
-    file.write("network={\n")
-    file.write('\tssid=\"'+ap["SSID"]+'\"\n')
-    file.write('\tkey_mgmt=FT-PSK\n')
-    file.write('\tpsk=\"'+passwd+'\"\n')
-    file.write('}')
+    config = configparser.ConfigParser()
+    config['AccessPoint'] = {'SSID':ssid, 'Password': passwd}
 
-    file.close()
+    with open('network.conf', 'w') as configfile:
+        config.write(cofnigfile)
+    print("network.conf created successfully.")
     
 def read_config_file(config_file):
     config = configparser.ConfigParser()

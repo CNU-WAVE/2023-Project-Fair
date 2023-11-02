@@ -1,6 +1,7 @@
 from dns_query_module.check_connection import check_DNS_query
 from ap_list_module.search_aps import *
 from setting.setting import *
+from packet_analysis_module.packet import *
 from getpass import getpass
 
 
@@ -43,11 +44,7 @@ if __name__ == "__main__":
         print()
         print("Save succeeded in network.conf\n")
 
-        #########################################
-        # TODO:                                 #
-        # CONNECT WITH AP with network.conf     #
-        #########################################
-        connect_wifi("./network.conf")
+        #connect_wifi("./network.conf")
 
     elif menu == 2:
         connected_ap = get_connected_ap()
@@ -57,8 +54,5 @@ if __name__ == "__main__":
         
         
     elif menu == 3:
-        #########################################
-        # TODO:                                 #
-        # Print Packets from AP                 #
-        #########################################
+        capture_init()
         

@@ -73,10 +73,12 @@ def capture_start(packet):
                     ["sport", sport, "dport", dport, "Packet Length", udp_length]
                 ])
         if src_ip == dst_ip:
-            print("Source IP and Destination IP are the same. Stopping the capture.")
+            print("\033[41m" + "Source IP and Destination IP are the same. Stopping the capture." + "\033[0m")
             sys.exit()
         combined_data = icmp_data + tcp_data + udp_data
         table = tabulate(combined_data,  tablefmt="grid")
+        if src_ip == dst_ip:
+            table = "\033[41m" + table + "\033[0m"  # Highlighting table in red if srcIP equals dstIP
         print(table)
 # 초기화 함수 호출
 capture_init()

@@ -39,7 +39,7 @@ def read_config_file(config_file):
         ssid = config.get('AccessPoint', 'SSID')
         password = config.get('AccessPoint', 'Password')
         return ssid, password
-    exception Exception as e:
+    except Exception as e:
         print(f"Error reading settings file: {e}")
         return None, None
 

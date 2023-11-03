@@ -35,7 +35,7 @@ def set_conf(ssid, passwd, config_path):
 def read_config_file(config_file):
     config = configparser.ConfigParser()
     try:
-        config.read(file_path)
+        config.read(config_file)
         ssid = config.get('AccessPoint', 'SSID')
         password = config.get('AccessPoint', 'Password')
         return ssid, password

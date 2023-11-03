@@ -1,5 +1,6 @@
 import sys
 import subprocess
+import configparser
 
 def get_connected_ap():
     try:
@@ -20,24 +21,46 @@ def get_connected_ap():
             return None
     except subprocess.CalledProcessError:
         return None
+def get_connected_AP():
+    try:
+        # Run the iwconfig command to get information about the wireless interfaces
+        result = subprocess.run(['iwconfig'], capture_output=True, text=True)
+    
+        # Display the output
+        print("Connected Access Points:")
+        print(result.stdout)
+    except FileNotFoundError:
+        print("Error: 'iwconfig' command not found. Make sure you're running this on a Linux system with wireless capabilities.")
     
 
-def set_conf(ap, passwd):
+def set_conf(ssid, passwd, config_path):
 
-    file = open('network.conf', 'w')
-    file.write("ctrl_interface=/var/run/wpa_supplicant\n")
-    file.write("network={\n")
-    file.write('\tssid=\"'+ap["SSID"]+'\"\n')
-    file.write('\tkey_mgmt=FT-PSK\n')
-    file.write('\tpsk=\"'+passwd+'\"\n')
-    file.write('}')
+    config = configparser.ConfigParser()
+    config['AccessPoint'] = {'SSID':ssid, 'Password': passwd}
 
-    file.close()
+    with open(config_path, 'w') as configfile:
+        config.write(configfile)
+    print("network.conf created successfully.")
+    
+def read_config_file(config_file):
+    config = configparser.ConfigParser()
+    try:
+        config.read(config_file)
+        ssid = config.get('AccessPoint', 'SSID')
+        password = config.get('AccessPoint', 'Password')
+        return ssid, password
+    except Exception as e:
+        print(f"Error reading settings file: {e}")
+        return None, None
 
-def print_connected_AP(connected_ap):
-    if connected_ap:
-        print("\nSSID:", connected_ap['SSID'])
-        print("MAC:", connected_ap['MAC'])
-        print()
-    else:
-        print("\nNo AP connected\n")
+def connect_wifi(config_file):
+    ssid, password = read_config_file(config_file)
+    if ssid and password:
+        command = f"nmcli device wifi connect '{ssid}' password '{password}'"
+        try:
+            subprocess.run(command, shell=True, check=True)
+            print(f"Connected to '{ssid}' successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to '{ssid}'.")
+
+    

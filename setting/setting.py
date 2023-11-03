@@ -21,6 +21,16 @@ def get_connected_ap():
             return None
     except subprocess.CalledProcessError:
         return None
+def get_connected_AP():
+    try:
+        # Run the iwconfig command to get information about the wireless interfaces
+        result = subprocess.run(['iwconfig'], capture_output=True, text=True)
+    
+        # Display the output
+        print("Connected Access Points:")
+        print(result.stdout)
+    except FileNotFoundError:
+        print("Error: 'iwconfig' command not found. Make sure you're running this on a Linux system with wireless capabilities.")
     
 
 def set_conf(ssid, passwd, config_path):

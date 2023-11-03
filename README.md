@@ -50,6 +50,9 @@ Language: Python(3.11.2)
 OS: Kali Linux(2023.1)
 kernel header: Linux kali 6.1.0-kali9-amd64
 python library:
+sacpy
+tabulate
+configparser
 ```
 
 ### 세부 내용

@@ -56,6 +56,8 @@ python library:
 폐쇄망 환경에서 일어날 수 있는 공격 시도에 대해 패킷 덤프 분석을 통해 공격 가능성이 있는 패킷(예를 들어 출발지와 목적지 주소가 동일한 패킷)에 대한 정보를 사용자에게 제공하고, 폐쇄망 내에서 외부와 연결이 되면 안되는 AP가 외부망과 연결이 되어있는지, 보안 정책상 차단한 사이트에 접속이 되는지를 확인할 수 있는 도구를 제작하는 것을 최종 목표로 한다.
 해당 도구에서는 주변에 존재하는 AP 목록을 검색하고, 사용자가 선택한 AP에 연결하여 패킷을 수집한다. 해당 수집과정에서 이상 패킷이 발견되는 경우, 해당 패킷에 대한 정보를 출력하여 사용자에게 전달한다. 이상 패킷의 경우 공격을 위한 패킷이 아니라 특정 취약점이 발생할 수 있는 가능성이 있는 패킷의 경우도 탐지하여 미리 경고하여 무선 네트워크 보안을 강화할 수 있도록 돕는다. 외부망 연결 확인 기능은 DNS Query를 활용하여 구현하였다.
 
+<img width="1297" alt="image" src="https://github.com/CNU-WAVE/2023-Project-Fair/assets/81208791/160b8ee3-3757-44a6-be83-f2320e788537">
+<img width="1432" alt="image" src="https://github.com/CNU-WAVE/2023-Project-Fair/assets/81208791/e13d90e6-349c-4205-901b-e795dc5da244">
 
 
 
@@ -65,7 +67,7 @@ python library:
 - 추후 추가적인 연구를 통해 다양한 취약점들에 대해 점검할 수 있도록 하여 종합적인 보안 진단 도구를 제공해 무선 네트워크 보안 유지에 도움이 될 수 있다.
 
 ## 발표 자료
-![Poster](https://github.com/CNU-WAVE/2023-Project-Fair/assets/81208791/1bc4be6f-c205-4573-8f21-26de9a8a4467)
+![poster](https://github.com/CNU-WAVE/.github/blob/main/profile/image/%5B%ED%8F%AC%EC%8A%A4%ED%84%B0%5DWAVE.jpg?raw=true)
 
 
 

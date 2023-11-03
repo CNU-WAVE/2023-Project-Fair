@@ -29,7 +29,7 @@ def set_conf(ssid, passwd):
     config['AccessPoint'] = {'SSID':ssid, 'Password': passwd}
 
     with open('network.conf', 'w') as configfile:
-        config.write(cofnigfile)
+        config.write(configfile)
     print("network.conf created successfully.")
     
 def read_config_file(config_file):

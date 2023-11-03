@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     elif menu == 2:
         connected_ap = get_connected_ap()
-        print_connected_AP(connected_ap)
+        print_connected_AP()
         # option needed
         check_DNS_query()
         

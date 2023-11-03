@@ -46,9 +46,9 @@ def read_config_file(config_file):
 def connect_wifi(config_file):
     ssid, password = read_config_file(config_file)
     if ssid and password:
-        command = f"nmcli device wifi connect '{ssid} password '{password}'"
+        command = f"nmcli device wifi connect '{ssid}' password '{password}'"
         try:
-            subprocess.run(command, shell=Ture, check=True)
+            subprocess.run(command, shell=True, check=True)
             print(f"Connected to '{ssid}' successfully.")
         except subprocess.CalledProcessError as e:
             print(f"Failed to '{ssid}'.")

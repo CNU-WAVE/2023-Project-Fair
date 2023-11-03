@@ -40,7 +40,7 @@ if __name__ == "__main__":
         print("#######################################\n")
 
         passwd = getpass("Input AP's password: ")
-        set_conf(selected_AP['SSID'], passwd, "./network.conf)
+        set_conf(selected_AP['SSID'], passwd, "./network.conf")
         print()
 
         connect_wifi("./network.conf")

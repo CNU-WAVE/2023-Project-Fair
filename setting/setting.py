@@ -23,12 +23,12 @@ def get_connected_ap():
         return None
     
 
-def set_conf(ssid, passwd):
+def set_conf(ssid, passwd, config_path):
 
     config = configparser.ConfigParser()
     config['AccessPoint'] = {'SSID':ssid, 'Password': passwd}
 
-    with open('network.conf', 'w') as configfile:
+    with open(config_path, 'w') as configfile:
         config.write(configfile)
     print("network.conf created successfully.")
     

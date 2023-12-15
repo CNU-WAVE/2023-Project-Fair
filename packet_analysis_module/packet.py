@@ -6,8 +6,11 @@ packet_number = 0  # 패킷 개수
 capture_time = input("Time: ")  # 시간
 protocols = {1: 'icmp', 6: 'tcp', 17: 'udp'}
 
-
-
+# 필터링을 위한 변수
+filter_protocol = None
+filter_destination_ip = None
+filter_source_ip = None
+filtering = False
 
 def capture_init():
     global packet_number
@@ -16,7 +19,6 @@ def capture_init():
     if packet_number == 0:
         print("Packet number is zero")
         sys.exit()
-
 
 def capture_start(packet):
     global packet_number
@@ -35,6 +37,13 @@ def capture_start(packet):
 
         # 패킷 번호 증가
         packet_number += 1
+
+        if filtering:
+            # 필터링 조건 확인
+            if (filter_protocol is not None and proto != filter_protocol) or \
+               (filter_destination_ip is not None and dst_ip != filter_destination_ip) or \
+               (filter_source_ip is not None and src_ip != filter_source_ip):
+                return  # 필터 조건에 맞지 않으면 패킷 처리 중단
 
         if proto in protocols:
             # ICMP
@@ -72,14 +81,36 @@ def capture_start(packet):
                     ["src", src_ip, "dst", dst_ip, "TTL", ttl],
                     ["sport", sport, "dport", dport, "Packet Length", udp_length]
                 ])
+
         if src_ip == dst_ip:
-            print("\033[41m" + "Source IP and Destination IP are the same. Stopping the capture." + "\033[0m")
+            print("Source IP and Destination IP are the same. Stopping the capture.")
             sys.exit()
+
         combined_data = icmp_data + tcp_data + udp_data
-        table = tabulate(combined_data,  tablefmt="grid")
-        if src_ip == dst_ip:
-            table = "\033[41m" + table + "\033[0m"  # Highlighting table in red if srcIP equals dstIP
+        table = tabulate(combined_data, tablefmt="grid")
         print(table)
+
+# 필터링 옵션 선택
+print("Filtering Options:")
+print("1. Protocol")
+print("2. Destination IP")
+print("3. Source IP")
+print("4. No Filtering")
+filter_choice = input("Enter filter choice (separate by commas, e.g., 1,2,4): ")
+
+if '4' in filter_choice.split(','):
+    filtering = False
+else:
+    filtering = True
+    for choice in filter_choice.split(','):
+        if choice == '1':
+            filter_protocol = int(input("Enter protocol number (1 for ICMP, 6 for TCP, 17 for UDP): "))
+        elif choice == '2':
+            filter_destination_ip = input("Enter destination IP address: ")
+        elif choice == '3':
+            filter_source_ip = input("Enter source IP address: ")
+        else:
+            print(f"Invalid filter choice: {choice}")
 
 if __name__ == "__main__":
     # 초기화 함수 호출
